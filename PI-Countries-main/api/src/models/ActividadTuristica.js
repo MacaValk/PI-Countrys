@@ -1,0 +1,23 @@
+const {DataTypes} = require("sequelize"); 
+
+module.exports = (sequelize) => {
+    sequelize.define("ActividadTuristica", { 
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true 
+        },
+        name: {
+            type: DataTypes.STRING,
+        },
+        dificultad: {
+            type: DataTypes.ENUM("1", "2", "3", "4", "5"), 
+        },
+        duracion: {
+            type: DataTypes.INTEGER
+        },
+        temporada: {
+            type: DataTypes.ENUM("verano", "otoño", "primavera", "invierno"), 
+        }
+    }, {timestamps: false, freezeTableName: true}); 
+}
