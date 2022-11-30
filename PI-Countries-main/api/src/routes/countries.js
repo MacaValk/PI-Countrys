@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
-const { Sequelize } = require('sequelize')
-const {Country, ActividadTuristica, Op} = require("../db.js")
+const {Sequelize} = require("sequelize"); 
+const {Country, ActividadTuristica} = require("../db.js")
 const axios = require("axios")
 
 const getApiInfo = async () => {
@@ -56,14 +56,21 @@ const getApiInfo = async () => {
 
 router.get("/", async (req, res) => {
   try {
+   
     const {name} = req.query 
-    if(name) {
+    if(name) { 
+      console.log("entro a el if")     
+      console.log(name)
+      let upperName = name.charAt(0).toUpperCase() + name.slice(1)
+      console.log(upperName)
       const findName = await Country.findAll(
-        { where: {name: name}, 
+        { where: {name: {[Sequelize.Op.iLike]: `%${upperName}%`}}, 
         include: ActividadTuristica}  
       )
+      console.log(findName)
        res.status(200).send(findName)
     } else {
+      console.log("entro al else getAllCountries")
       const daleEncontralo = await Country.findAll(
         {
         include:  ActividadTuristica
@@ -93,4 +100,7 @@ router.get("/", async (req, res) => {
  })
 
 
+
+
+ 
 module.exports = router;

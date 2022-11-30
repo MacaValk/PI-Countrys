@@ -11,13 +11,14 @@ export const getCountries = () => {
     }
 }
 
- export const filterCountriesByContinente = (payload) => { 
+ export const filterCountries = (payload) => { 
     console.log(payload) //payload que va a ser el value que me va a llegar 
     return {
-        type: "FILTER_BY_CONTINENT", 
+        type: "FILTER_COUNTRIES", 
         payload 
     }
 }
+
 export const getActivities = () => {
     return async function (dispatch){
         const getAllActivities = await axios.get("http://localhost:3001/activities")
@@ -26,4 +27,38 @@ export const getActivities = () => {
             payload: getAllActivities.data
         })    
     }     
+}
+
+export const postActivities = (payload) => {
+    console.log("payload en action: ", payload)
+    return async function (dispatch){
+        const response = await axios.post("http://localhost:3001/activities", payload);
+        console.log(response);
+        return response; 
+    }
+}
+
+export const orderByName = (payload) =>  {
+    return {
+        type: "ORDER_ALF",
+        payload
+    }
+}
+ 
+export const orderByPopulation = (payload) =>  {
+    return {
+        type: "ORDER_POPULATION",
+        payload
+    }
+}
+
+
+export const getNameContry = (name) => {
+    return async function (dispatch){
+            var json = await axios.get("http://localhost:3001/countries?name=" + name);
+            return dispatch ({
+                type: "GET_NAME_CONTRY",
+                payload: json.data
+            })
+    } 
 }

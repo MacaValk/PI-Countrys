@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
-import {getCountries, filterCountriesByContinente  } from "../actions"; 
+import {getCountries, filterCountries, orderByName,  orderByPopulation} from "../actions"; 
 import {Link} from "react-router-dom"; 
 import Card from "./Card";
 import Paginado from "./Paginado";
-
+import SearchBar from "./SearchBar";
 
 const Home = () => {
     const dispatch = useDispatch();
-// ------------------------------- Variable que me trae el estado de allCountries ------------
-    const todosLosPaises = useSelector((state) => state.allCountries) 
-
+// ------------------------------- Variable que me trae el estado de filteredContries ------------
+    const todosLosPaises = useSelector((state) => state.filteredContries)
+    console.log(todosLosPaises)
 // ------------------------------- Estados locales del componente Home -----------------------
     const [currentPage, setCurrentPage] = useState(1);
     const [countriesPerPage, setCountriesPerPage] = useState(9); 
@@ -19,6 +19,8 @@ const Home = () => {
     const indexOfLastCountry = currentPage * countriesPerPage; // 9 
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage; // 0
     const currentCountries = todosLosPaises.slice(indexOfFirstCountry, indexOfLastCountry)
+
+    console.log(currentCountries)
 // esta constante nos va a ayudar para el renderizado del paginado
 
     const paginado = (pageNumber) => {
@@ -36,46 +38,59 @@ const Home = () => {
 // ---------------------------------- Use Effect/componentDidMount -------------------------
 // treatar de traernos del estado los paises cunado el componente se monta
 useEffect(() => {
-       // console.log("entro al useEffect")
     dispatch(getCountries())
-}, [])
+}, [dispatch])
 
 // ------------------------- Click Handlers -------------------------------------------------
 const handlerClick = (e) => {
     // console.log("entro al handlerClick")
      e.preventDefault()
     dispatch(getCountries())
+}
 
- }
 
  const handlerFilterContinents = (e) => {
     console.log("dentro del handlerFilterContinents")
     e.preventDefault()
-    dispatch(filterCountriesByContinente(e.target.value)); 
-   
-   // recibe como parametro el value del imput accedo a esa funcion con el e.target.value
- }  
+    dispatch(filterCountries(e.target.value)); 
+}
+
+const handlerFilterName = (e) => {
+    e.preventDefault(e);
+    console.log(e.target.value)
+    dispatch(orderByName(e.target.value))
+}
+
+const handlerFilterPopulation = (e) => {
+    e.preventDefault(e);
+    dispatch(orderByPopulation(e.target.value))
+}
+ //  recibe como parametro el value del imput accedo a esa funcion con el e.target.value
+  
 //  console.log("aca estan todos los paises", todosLosPaises)
     return (
-        <div class="homeComponent"> 
+        <div className="homeComponent"> 
            <Link to= "/activities">Crear Actividades</Link>
            <h1>Api Countries</h1>
-           <button class="bn3637 bn37" onClick={handlerClick}>volver a cargar todos los paises</button>
+           <button className="bn3637 bn37" onClick={handlerClick}>volver a cargar todos los paises</button>
+           
            <div> 
-             <select class="select" > 
-                <option value="asc">Ascendente</option>
-                <option value="dec">Decendente</option>
-                <option value="aToz">A-Z </option>
-                <option value="zToa">Z-A</option>
-                <option  value="cantidadPoblacion">Cantidad_Poblacion</option>
+{/* ---------------------------- filtro alfabetico---------------------------------------- */}
+             <select  className="select" onChange={(e) => {handlerFilterName(e)}} > 
+                <option value="asc">A - Z</option>
+                <option value="dec">Z - A</option>
+            </select>
+{/* -------------------------------- filtro por poblacion -------------------------------  */}
+            <select  className="select" onChange={(e) => {handlerFilterPopulation(e)}} > 
+                <option value="asc">Menor poblacion  </option>
+                <option value="dec">Mayor poblacion</option>
              </select>
 {/* -------------------------------------------------------------------------------------- */}
-             <select class="select">
-                <option value="all">Todos los paises</option>
+             <select className="select">
                 <option value="Actividad">Actividad Turistica</option>  
              </select>
 {/* ----------------------------------- Filtro Continente -------------------------------- */}
-             <select class="select" onChange = {(e) => {handlerFilterContinents(e)}}>
+             <select className="select" onChange = {(e) => {handlerFilterContinents(e)}}>
                         <option value = "All">Selecciona todos los Continente</option>
                         <option value = "Asia">Asia</option>
                         <option value = "South America">South America</option>
@@ -90,6 +105,8 @@ const handlerClick = (e) => {
                 countriesPerPage = {countriesPerPage}
                 todosLosPaises = {todosLosPaises.length}
                 paginado = {paginado} />
+
+                <SearchBar/> 
 {/* ----------------------------------- Props Cards  ------------------------------------ */}
              <div>{
         currentCountries && currentCountries.map( el => {

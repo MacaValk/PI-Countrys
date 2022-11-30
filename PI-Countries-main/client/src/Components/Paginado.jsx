@@ -5,7 +5,7 @@ import React from "react";
     for (let i = 0; i <= Math.ceil(todosLosPaises/countriesPerPage); i++) {
         pageNumbers.push(i + 1)        
     }
-
+// me deja la ultima pagina vacia, revisar si hay alguna manera de resolverlo. 
     return (
         <nav>
            <ul className="paginado">

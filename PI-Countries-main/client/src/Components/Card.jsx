@@ -5,13 +5,13 @@ const Card = ({name, continents, flagsImg}) => {
     // console.log(name, continents, flagsImg)
     return (
 
-      <div class="conteiner">
-         <div class="card"> 
+      <div className="conteiner">
+         <div className="card"> 
          <h3>{name}</h3> 
            
             <h5 >{continents}</h5>
            
-            <img class="img" src={flagsImg} alt="img not found" width="200px" height="250px"/>
+            <img className="img" src={flagsImg} alt="img not found" width="200px" height="250px"/>
         </div>
       </div>
        

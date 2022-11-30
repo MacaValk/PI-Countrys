@@ -17,7 +17,9 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
 try {
+    req.body.duracion = parseFloat(req.body.duracion)
     const {idPais,name,dificultad,duracion,temporada} = req.body
+
     console.log( "estos son los datos que me llegan por body:",idPais,name,dificultad,duracion,temporada)
     let nuevaActividad = await ActividadTuristica.create({
         name, 
@@ -41,6 +43,7 @@ try {
  }   
 }) 
 
+// activities per contry 
 
 
 
