@@ -104,6 +104,17 @@ function rootReducer (state = initialState, action){
               ...state,
               detail: action.payload 
             }
+            case "FILTER_BY_ACTIVITIE": 
+            const allCountriesActivities = state.allCountries;
+             if(action.payload === "todas" ){
+               let filtrado = allCountriesActivities.filter((el) => el.ActividadTuristicas[0] && el.ActividadTuristicas.name)
+               console.log(filtrado)
+             } 
+            
+              return {
+            ...state,
+            // filteredContries: filteredActivities 
+           }
                 
             default:
                 return state;

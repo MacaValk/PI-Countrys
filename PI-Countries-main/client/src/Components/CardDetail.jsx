@@ -9,14 +9,16 @@ const CardDetail = (props) => {
     console.log(props)
     const dispatch = useDispatch()
     let {id} = useParams()
+    console.log(id)
 
+    
 
     useEffect(() => {
             dispatch(getCountriDetail(id)); 
         }, [])
 
     const contryDetail = useSelector((state) => state.detail)
-
+    console.log(contryDetail.ActividadTuristicas)
     return (
         <div>
           {
@@ -32,10 +34,21 @@ const CardDetail = (props) => {
                 <h1> poblacion: {contryDetail.population}</h1>
           </div> :  <p>Loading...</p>
            } 
+            
+        <div >
+           {
+            ( contryDetail.ActividadTuristicas ? contryDetail.ActividadTuristicas.map(
+                (el) => {
+                    return (
+                        <div >
+                        <h3 > Actividad: {el.name} </h3>
+                        <h3 > Dificultad: {el.dificultad} </h3>
+                        <h3 > Duracion: {el.duracion} </h3>
+                        <h3 > Temporada: {el.temporada} </h3>
+                    </div>
+                    )}) :  <h2>no hay actividades</h2>)
+           }
 
-        <div> 
-            <h4> actividades: {contryDetail.ActividadTuristicas > 0 ?
-                contryDetail.ActividadTuristicas.map(el => el.name + (" ")) : "no existe actividad turistica"}</h4>
         </div>
            <Link to= "/home">
                 <button>Volver</button>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
-import {getCountries, filterCountries, orderByName,  orderByPopulation} from "../actions"; 
+import {getCountries, filterCountries, orderByName,  orderByPopulation, filterByActivity, getActivities} from "../actions"; 
 import {Link} from "react-router-dom"; 
 import Card from "./Card";
 import Paginado from "./Paginado";
@@ -10,6 +10,7 @@ const Home = () => {
     const dispatch = useDispatch();
 // ------------------------------- Variable que me trae el estado de filteredContries ------------
     const todosLosPaises = useSelector((state) => state.filteredContries)
+    const activities = useSelector(state => state.activities)
     console.log(todosLosPaises)
 // ------------------------------- Estados locales del componente Home -----------------------
     const [currentPage, setCurrentPage] = useState(1);
@@ -35,10 +36,12 @@ const Home = () => {
             setCurrentPage(pageNumber)
         }
     }
+    console.log(activities)
 // ---------------------------------- Use Effect/componentDidMount -------------------------
 // treatar de traernos del estado los paises cunado el componente se monta
 useEffect(() => {
     dispatch(getCountries())
+    dispatch(getActivities())
 }, [dispatch])
 
 // ------------------------- Click Handlers -------------------------------------------------
@@ -65,6 +68,11 @@ const handlerFilterPopulation = (e) => {
     e.preventDefault(e);
     dispatch(orderByPopulation(e.target.value))
 }
+
+function handlefilteredByActivity(e){
+    e.preventDefault();
+    dispatch(filterByActivity(e.target.value))
+}
  //  recibe como parametro el value del imput accedo a esa funcion con el e.target.value
   
 //  console.log("aca estan todos los paises", todosLosPaises)
@@ -86,9 +94,13 @@ const handlerFilterPopulation = (e) => {
                 <option value="dec">Mayor poblacion</option>
              </select>
 {/* -------------------------------------------------------------------------------------- */}
-             <select className="select">
-                <option value="Actividad">Actividad Turistica</option>  
-             </select>
+        <span>Actividad</span>
+        <select  className="select" onChange={(e) => {handlefilteredByActivity(e)}}>
+            <option value="todas">Todas</option>
+            {activities.map((act) => (
+                <option value={act.name}>{act.name}</option>
+            ))}
+        </select>
 {/* ----------------------------------- Filtro Continente -------------------------------- */}
              <select className="select" onChange = {(e) => {handlerFilterContinents(e)}}>
                         <option value = "All">Selecciona todos los Continente</option>

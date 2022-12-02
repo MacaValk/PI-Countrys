@@ -72,3 +72,10 @@ export const getCountriDetail = (id) => {
         }) 
     }
 } 
+
+export const filterByActivity= (activitie) => {
+    return {
+        type: "FILTER_BY_ACTIVITIE",
+        payload: activitie
+    }
+}
