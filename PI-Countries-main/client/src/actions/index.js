@@ -62,3 +62,13 @@ export const getNameContry = (name) => {
             })
     } 
 }
+
+export const getCountriDetail = (id) => {
+    return async function (dispatch){
+        var info = await axios.get(`http://localhost:3001/countries/` + id)
+        return dispatch({
+            type: "GET_COUNTRY_DETAIL",
+            payload: info.data
+        }) 
+    }
+} 

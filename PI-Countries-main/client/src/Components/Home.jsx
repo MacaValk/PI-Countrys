@@ -116,6 +116,7 @@ const handlerFilterPopulation = (e) => {
                     name={el.name}
                     flagsImg= {el.flagsImg}
                     continents={el.continents}
+                    id={el.id}
                     key={el.id}
                 />
             )})

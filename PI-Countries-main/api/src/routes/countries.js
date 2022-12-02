@@ -59,7 +59,6 @@ router.get("/", async (req, res) => {
    
     const {name} = req.query 
     if(name) { 
-      console.log("entro a el if")     
       console.log(name)
       let upperName = name.charAt(0).toUpperCase() + name.slice(1)
       console.log(upperName)
@@ -67,10 +66,8 @@ router.get("/", async (req, res) => {
         { where: {name: {[Sequelize.Op.iLike]: `%${upperName}%`}}, 
         include: ActividadTuristica}  
       )
-      console.log(findName)
        res.status(200).send(findName)
     } else {
-      console.log("entro al else getAllCountries")
       const daleEncontralo = await Country.findAll(
         {
         include:  ActividadTuristica

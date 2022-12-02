@@ -1,18 +1,24 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-
-const Card = ({name, continents, flagsImg}) => {
+const Card = ({name, continents, flagsImg, id}) => {
     // console.log(name, continents, flagsImg)
+    let history = useHistory();
+
+    
+    const rutaDetalle = (e) => {
+      history.push(`/home/${id}`)
+    }
+
+
     return (
 
-      <div className="conteiner">
+      <div className="conteiner" onClick={rutaDetalle}>
          <div className="card"> 
          <h3>{name}</h3> 
-           
             <h5 >{continents}</h5>
-           
             <img className="img" src={flagsImg} alt="img not found" width="200px" height="250px"/>
-        </div>
+          </div>
       </div>
        
     )

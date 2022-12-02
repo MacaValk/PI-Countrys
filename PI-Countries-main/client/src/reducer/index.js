@@ -3,6 +3,7 @@ const initialState = {
     allCountries: [], 
     activities : [], 
     filteredContries : [],
+    detail: []
    
    }; 
 
@@ -98,6 +99,11 @@ function rootReducer (state = initialState, action){
                 ...state,
                 activities: action.payload,
             }  
+            case "GET_COUNTRY_DETAIL": 
+            return{
+              ...state,
+              detail: action.payload 
+            }
                 
             default:
                 return state;
