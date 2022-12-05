@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 // El método test() ejecuta la búsqueda de una ocurrencia entre una expresión regular y una cadena especificada. Devuelve true o false.
 function validate(input){
   let errors = {}
-
+  
    if(!input.name) {errors.name = "Campo Necesario"}
   else if (/[0-9]/.test(input.nombre)){
     errors.nombre = "Nombre invalido"
@@ -21,7 +21,7 @@ function validate(input){
     errors.duracion = "Debe ser un numero entre 1 y 24"       
   }
   if(!input.idPais) {errors.idPais = "Campo Necesario"}
-  else if(!/^[A-Z]{3}$/.test(input.iPais)){
+  else if(!/^[A-Z]{3}$/.test(input.idPais)){
     errors.idPais = "Debe ser un codigo valido"
 }
 
@@ -72,10 +72,18 @@ function ActivitiesCreate() {
       }
     }
 
+
+
+    // console.log("errors:", errors)
+    const areFieldsEmpty = !input.name || !input.dificultad || !input.duracion || !input.temporada || !input.idPais
+    const thereAreErrors = Object.keys(errors).length
+    const canSubmit = !thereAreErrors && !areFieldsEmpty
+    // console.log("canSubmit", canSubmit)
+
     const handlerSubmit = (e) => {
       e.preventDefault();
       console.log(input)
-      if(!input.name || !input.dificultad || !input.duracion || !input.temporada || !input.idPais) {
+      if(areFieldsEmpty) {
         return alert ('Complete correctamente el formulario antes de enviarlo')} 
       
       dispatch(postActivities(input))
@@ -134,7 +142,7 @@ function ActivitiesCreate() {
               <input type="checkbox" value="primavera" name="primavera"  onChange={(e) => handlerCheck(e)}/>
               <label> Primavera </label>  
         </div>
-          <button type='submit' className='button'>Crear Actividad</button>
+          <button type='submit' className='button' disabled={!canSubmit}>Crear Actividad</button>
       </form>
     </div>
   )
