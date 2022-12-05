@@ -1,0 +1,159 @@
+.HomeConteiner{
+    background-image: url('C:\Users\Hattori Hanzo\Downloads\PI-Countries-main\PI-Countries-main\client\src\imagen\imgFondo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: auto;
+}
+
+.gridContainer{
+    display: grid;
+    gap: 30px;
+    height: auto;
+    grid-template-areas: 
+    "CrearActividad"
+    "btnCrearActividades"
+    "btnCargarPaises"
+    "Filtro" 
+    "CardContainer" ; 
+}
+
+.navBarHome {
+    display: flex;
+    justify-content: space-between;
+}
+
+.appTitulo{
+    font-size: 60px;
+    color: #252524;
+    font-family: 'Times New Roman', Times, serif;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 8px;
+}
+
+.CardContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+.grid-Card {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.Paginado {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 3px;
+    margin-top: 50px;
+}
+
+.btnCargarPaises {
+    position: relative;
+    font-size: 17px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1em 2.5em;
+    display: inline-block;
+    border-radius: 6em;
+    transition: all .2s;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    color: black;
+    background-color: white;
+   }
+   
+   .btnCargarPaises:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   }
+   
+   .btnCargarPaises:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   .btnCargarPaises::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+   }
+   
+   .btnCargarPaises::after {
+    background-color: #fff;
+   }
+   
+   .btnCargarPaises:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+   }
+
+   /* ------------------------------------------------------- */
+
+   .Filtros{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+   }
+   
+   .Filtro {
+    position: relative;
+    font-size: 17px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1em 2.5em;
+    display: inline-block;
+    border-radius: 6em;
+    transition: all .2s;
+    border: none;
+    font-family: inherit;
+    font-weight: 500;
+    color: black;
+    background-color: white;
+    margin-left: 10px;
+   }
+   
+   .Filtro:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   }
+   
+   .Filtro:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   .Filtro::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+   }
+   
+   .Filtro::after {
+    background-color: #fff;
+   }
+   
+   .Filtro:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+   }

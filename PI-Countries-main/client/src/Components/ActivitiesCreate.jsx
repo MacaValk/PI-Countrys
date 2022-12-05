@@ -2,15 +2,13 @@ import React from 'react'
 import {useState, useEffect} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {postActivities, getActivities} from "../actions/index";
-import {useDispatch, useSelector} from "react-redux"; 
+import {useDispatch} from "react-redux"; 
 
 // El método test() ejecuta la búsqueda de una ocurrencia entre una expresión regular y una cadena especificada. Devuelve true o false.
 function validate(input){
   let errors = {}
-  // let dif = Number(input.dificultad)
-  // let dur = Number(input.duracion)
 
-  if(!input.name) {errors.name = "Campo Necesario"}
+   if(!input.name) {errors.name = "Campo Necesario"}
   else if (/[0-9]/.test(input.nombre)){
     errors.nombre = "Nombre invalido"
 }
@@ -79,6 +77,7 @@ function ActivitiesCreate() {
       console.log(input)
       if(!input.name || !input.dificultad || !input.duracion || !input.temporada || !input.idPais) {
         return alert ('Complete correctamente el formulario antes de enviarlo')} 
+      
       dispatch(postActivities(input))
       alert("Actividad creada con exito")
       setInput({
@@ -92,50 +91,50 @@ function ActivitiesCreate() {
     }
 
   return (
-    <div>
-      <Link to="/home"><button>Volver a home</button></Link>
+    <div className='Form'>
+      <Link to="/home"><button className='button'>Volver a home</button></Link>
       <h1>Crear Actividad!</h1>
       
        <form  method="post" onSubmit={(e) => {handlerSubmit(e)}}>
         <div>
           <label>nombre:</label>
-            <input type="text" value={input.name} name="name" onChange={handlerChange}>
+            <input type="text" value={input.name} name="name" onChange={handlerChange} placeholder='Name' class="input" required="">
             </input>
             { errors.name && (<p className="error">{errors.name}</p>)}            
         </div>
         <div>
           <label>dificultad:</label>
-            <input type="text" value={input.dificultad} name="dificultad" onChange={handlerChange}>
+            <input type="text" value={input.dificultad} name="dificultad" onChange={handlerChange} placeholder='1 al 5' class="input" required="">
             </input>
             { errors.dificultad && (<p className="error">{errors.dificultad}</p>)}
         </div>
         <div>
           <label>duracion:</label>
-            <input type="number" value={input.duracion} name="duracion" onChange={handlerChange}>
+            <input type="number" value={input.duracion} name="duracion" onChange={handlerChange} placeholder='1 al 24' class="input" required="">
             </input>
             { errors.duracion && (<p className="error">{errors.duracion}</p>)}
         </div>
         <div>
           <label> ID Pais:</label>  
-                <input type="text" value={input.idPais} name="idPais" onChange={handlerChange} />
+                <input type="text" value={input.idPais} name="idPais" onChange={handlerChange} placeholder='ej: ARG ' class="input" required="" />
                 { errors.idPais && (<p className="error">{errors.idPais}</p>)}               
         </div>
-        <div>
-          <label>temporada:</label>
-            <label>
+        <div className='CheckBox'>
+          <label >temporada:</label>
+          
               <input type="checkbox" value="verano" name="verano" onChange={(e) => handlerCheck(e)}/>
-                Verano </label>
-            <label>
+              <label> Verano </label>
+          
               <input type="checkbox" value="otoño" name="otoño"  onChange={(e) => handlerCheck(e)}/>
-                Otoño </label>   
-            <label>
+              <label> Otoño </label>   
+        
               <input type="checkbox" value="invierno" name="invierno"  onChange={(e) => handlerCheck(e)}/>
-                Invierno </label>
-            <label>
+              <label> Invierno </label>
+            
               <input type="checkbox" value="primavera" name="primavera"  onChange={(e) => handlerCheck(e)}/>
-                Primavera </label>  
+              <label> Primavera </label>  
         </div>
-          <button type='submit'>Crear Actividad</button>
+          <button type='submit' className='button'>Crear Actividad</button>
       </form>
     </div>
   )

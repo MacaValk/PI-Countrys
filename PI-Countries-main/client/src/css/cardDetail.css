@@ -1,0 +1,215 @@
+
+.cardConteinerDetail {
+  background-image: url('C:\Users\Hattori Hanzo\Downloads\PI-Countries-main\PI-Countries-main\client\src\imagen\imgFondo.jpg');
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  gap: 100px;
+  margin-top: 50px;
+}
+
+.conteinerDetail {
+ margin: auto;
+ margin-right:auto;
+ margin-left: 280px;
+ margin-top: 2px;
+ margin-bottom: auto;
+ width: 500px;
+ height: auto;
+ display: flex;
+ flex-direction: column;
+ align-items:center;
+ background: #f2f2f3;
+ border-radius: 12px;
+ box-shadow: inset 5px 5px 10px #a9a9aa77,
+              inset -5px -5px 10px #ffffff7e;
+}
+
+
+.conteinerDetail .blob {
+  height: 10px;
+  width: 75%;
+  border-radius: 0 0 30px 30px;
+  margin: 0 auto;
+  background-color: #f2f2f3;
+  visibility: visible;
+} 
+
+.conteinerDetail:hover .blob {
+  height: 0;    
+}
+
+.conteinerDetail:active {
+  box-shadow: inset 3px 3px 3px #0835ea;
+  inset: -3px -3px 3px rgb(33, 19, 227);
+}
+
+/* ----------------------------------------------------------------- */
+
+.actividades {
+ margin: auto;
+ margin-right:auto;
+ margin-left: 280px;
+ margin-top: 2px;
+ margin-bottom: auto;
+ width: 500px;
+ height: auto;
+ display: flex;
+ flex-direction: column;
+ align-items:center;
+ background: #f2f2f3;
+ border-radius: 12px;
+ box-shadow: inset 5px 5px 10px #a9a9aa77,
+              inset -5px -5px 10px #ffffff7e;
+transition: all 0.5s; 
+ }
+ 
+ 
+ .actividades .blob {
+   height: 10px;
+   width: 75%;
+   border-radius: 0 0 30px 30px;
+   margin: 0 auto;
+   background-color: #f2f2f3;
+   visibility: visible;
+   transition: all 0.3s;
+ } 
+ 
+ .actividades:hover .blob {
+   height: 0;    
+ }
+ 
+ .actividades:active {
+   box-shadow: inset 3px 3px 3px #0835ea;
+   inset: -3px -3px 3px rgb(33, 19, 227);
+ }
+ 
+ /* ---------------------------------------------------- */
+ .btnCardDetail{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+ }
+ 
+ .btnCardDetail {
+  position: relative;
+  font-size: 17px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1em 2.5em;
+  display: inline-block;
+  border-radius: 6em;
+  transition: all .2s;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  color: black;
+  background-color: white;
+  margin-left: 10px;
+ }
+ 
+ .btnCardDetail:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .btnCardDetail:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .btnCardDetail::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+ }
+ 
+ .btnCardDetail::after {
+  background-color: #fff;
+ }
+ 
+ .btnCardDetail:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+ }
+
+
+ .conteinerDetail .img{
+ height: 150px;
+ width: 200px;
+ margin-top: 1.6em;
+ aspect-ratio: 1;
+ border-radius: 10%;
+ background: #f2f2f3;
+ margin-bottom: 0.4em;
+ box-shadow: -5px -5px 8px #f2f2f3,
+              5px 5px 8px #f2f2f3; 
+ }
+
+ .conteinerDetail .pais {
+  font-size: 50px;
+  margin-bottom: -10px;
+}
+
+.conteinerDetail .id {
+  font-size: 20px;
+  margin-bottom: -20px;
+}
+
+.conteinerDetail .continente {
+  margin-bottom: -6px;
+  margin-bottom: -20px;
+}
+
+.conteinerDetail .capital {
+  font-size: 25px;
+  margin-bottom: -10px;
+}
+
+.conteinerDetail .subregion {
+  font-size: 25px;
+  margin-bottom: -10px;
+}
+
+.conteinerDetail .area {
+  font-size: 25px;
+  margin-bottom: -10px;
+}
+
+.conteinerDetail .poblacion {
+  font-size: 25px;
+  margin-bottom: 40px;
+}
+
+/* ------------------------------------------------------------------ */
+
+.actividad{
+  margin-top: 30px;
+  font-size: 50px;
+  margin-bottom: -10px;
+}
+
+.dificultad{
+ font-size: 30px;
+ margin-bottom: -20px;
+}
+
+.duracion{
+  font-size: 30px;
+  margin-bottom: -20px;
+
+}
+
+.pais{
+  font-size: 30px;
+  margin-bottom: 40px;
+}

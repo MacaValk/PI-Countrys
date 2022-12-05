@@ -1,16 +1,6 @@
-@import url("./css/paginado.css");
-@import url("./css/card.css");
-@import url("./css/btn_select.css");
-@import url("./css/landingPage.css");
-
 
 .App {
-
-  text-align: center;
-  /* background-image: url("imgFondo.jng.jpg"); */
-  background-image: url("imgFondo.jpg");
-  background:(76, 175, 80, 0.3); 
-  box-sizing: border-box; 
+  text-align: center; 
 }
 
 

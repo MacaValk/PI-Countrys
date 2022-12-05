@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
 import {getCountries, filterCountries, orderByName,  orderByPopulation, filterByActivity, getActivities} from "../actions"; 
-import {Link} from "react-router-dom"; 
+// import {Link} from "react-router-dom"; 
 import Card from "./Card";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import NavBar from "./NavBar";
+import "../css/Home.css";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -77,32 +79,38 @@ function handlefilteredByActivity(e){
   
 //  console.log("aca estan todos los paises", todosLosPaises)
     return (
-        <div className="homeComponent"> 
-           <Link to= "/activities">Crear Actividades</Link>
-           <h1>Api Countries</h1>
-           <button className="bn3637 bn37" onClick={handlerClick}>volver a cargar todos los paises</button>
+        <div className="HomeConteiner">
+            <div className="gridContainer">
+          
+              
+              <h1 className="appTitulo">Api Countries</h1>
+              <NavBar className="navBarHome"/>
+              <SearchBar/> 
+
+              <div className="Filtros">
+             <button className="btnCargarPaises" onClick={handlerClick}>Cargar Paises</button>
+
            
-           <div> 
+
 {/* ---------------------------- filtro alfabetico---------------------------------------- */}
-             <select  className="select" onChange={(e) => {handlerFilterName(e)}} > 
+            <select  className="Filtro" onChange={(e) => {handlerFilterName(e)}} > 
                 <option value="asc">A - Z</option>
                 <option value="dec">Z - A</option>
             </select>
 {/* -------------------------------- filtro por poblacion -------------------------------  */}
-            <select  className="select" onChange={(e) => {handlerFilterPopulation(e)}} > 
+            <select  className="Filtro" onChange={(e) => {handlerFilterPopulation(e)}} > 
                 <option value="asc">Menor poblacion  </option>
                 <option value="dec">Mayor poblacion</option>
-             </select>
+            </select>
 {/* -------------------------------------------------------------------------------------- */}
-        <span>Actividad</span>
-        <select  className="select" onChange={(e) => {handlefilteredByActivity(e)}}>
-            <option value="todas">Todas</option>
-            {activities.map((act) => (
-                <option value={act.name}>{act.name}</option>
-            ))}
-        </select>
+            <select  className="Filtro" onChange={(e) => {handlefilteredByActivity(e)}}>
+                <option value="todas">Todas Actividades</option>
+                {activities.map((act) => (
+                    <option value={act.name}>{act.name}</option>
+                ))}
+            </select>
 {/* ----------------------------------- Filtro Continente -------------------------------- */}
-             <select className="select" onChange = {(e) => {handlerFilterContinents(e)}}>
+            <select className="Filtro" onChange = {(e) => {handlerFilterContinents(e)}}>
                         <option value = "All">Selecciona todos los Continente</option>
                         <option value = "Asia">Asia</option>
                         <option value = "South America">South America</option>
@@ -112,17 +120,13 @@ function handlefilteredByActivity(e){
                         <option value = "Antarctica">Antarctica</option>
                         <option value = "Africa">Africa</option>
             </select>
-{/* ------------------------------------- Props Paginado --------------------------------- */}
-             <Paginado 
-                countriesPerPage = {countriesPerPage}
-                todosLosPaises = {todosLosPaises.length}
-                paginado = {paginado} />
-
-                <SearchBar/> 
+               
+            </div>       
 {/* ----------------------------------- Props Cards  ------------------------------------ */}
-             <div>{
-        currentCountries && currentCountries.map( el => {
-            // console.log(el.name, el.flagsImg, el.continents)
+             <div  className="CardContainer">
+                <div className="grid-Card">
+                {currentCountries && currentCountries.map( el => {
+             console.log(el.name, el.flagsImg, el.continents)
             return (             
               <Card 
                     name={el.name}
@@ -131,11 +135,22 @@ function handlefilteredByActivity(e){
                     id={el.id}
                     key={el.id}
                 />
-            )})
-        }</div>
-{/* --------------------------------------------------------------------------------------- */}
-           </div>
+            )})}
+                </div>
+            </div>
+
+{/* --------------------------------------------------------------------------------------- */} 
+        <div className="Paginado">
+        <Paginado 
+                countriesPerPage = {countriesPerPage}
+                todosLosPaises = {todosLosPaises.length}
+                paginado = {paginado} />
         </div>
+           
+
+         
+        </div>
+</div> // ultimo div 
     )
 }
 

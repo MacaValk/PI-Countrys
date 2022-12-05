@@ -106,14 +106,21 @@ function rootReducer (state = initialState, action){
             }
             case "FILTER_BY_ACTIVITIE": 
             const allCountriesActivities = state.allCountries;
+            let filtrado
              if(action.payload === "todas" ){
-               let filtrado = allCountriesActivities.filter((el) => el.ActividadTuristicas[0] && el.ActividadTuristicas.name)
+               filtrado = allCountriesActivities.filter((el) => 
+                el.ActividadTuristicas.length
+               ) 
                console.log(filtrado)
+             }  else {
+              // console.log("esto me llega en action.payload", action.payload)
+              filtrado = allCountriesActivities.filter(el => el.ActividadTuristicas.some(({name}) => name === action.payload))
+              // console.log("esto me llega en la variable filtrado",filtrado)
              } 
             
               return {
             ...state,
-            // filteredContries: filteredActivities 
+            filteredContries: filtrado 
            }
                 
             default:
@@ -123,4 +130,4 @@ function rootReducer (state = initialState, action){
 
 export default rootReducer; 
 
-//action.payload === "All" ? todosLosPaises :
+//  el.ActividadTuristicas.includes(action.payload)

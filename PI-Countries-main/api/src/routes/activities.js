@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
 try {
     req.body.duracion = parseFloat(req.body.duracion)
     const {idPais,name,dificultad,duracion,temporada} = req.body
-
+    
     console.log( "estos son los datos que me llegan por body:",idPais,name,dificultad,duracion,temporada)
     let nuevaActividad = await ActividadTuristica.create({
         name, 
@@ -43,8 +43,23 @@ try {
  }   
 }) 
 
-// activities per contry 
-
+router.delete("/:id", async (req, res) => {
+    let id = req.params.id; 
+    console.log(id)
+    try {
+    const findAct = await ActividadTuristica.findByPk(id)
+    console.log(findAct)
+     await ActividadTuristica.destroy({
+        where: {
+            id,
+        }
+     })  
+        res.send("eliminado con exito")
+    } catch (error) {
+        res.send(error.message)
+    }
+    
+})
 
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import "../css/Card.css"
 
 const Card = ({name, continents, flagsImg, id}) => {
     // console.log(name, continents, flagsImg)
@@ -13,13 +14,12 @@ const Card = ({name, continents, flagsImg, id}) => {
 
     return (
 
-      <div className="conteiner" onClick={rutaDetalle}>
-         <div className="card"> 
-         <h3>{name}</h3> 
+      <div className="Card" onClick={rutaDetalle}>
+            <h3 >{name}</h3> 
+            <img className="img" src={flagsImg} alt="img not found" />
             <h5 >{continents}</h5>
-            <img className="img" src={flagsImg} alt="img not found" width="200px" height="250px"/>
-          </div>
-      </div>
+         
+       </div>
        
     )
 }

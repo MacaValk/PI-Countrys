@@ -1,0 +1,39 @@
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .input {
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 28px;
+    max-width: 180px;
+    padding: 0 1rem;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    border: 1px solid #000000;
+    border-radius: 6px 0 0 6px;
+    background-color: white;
+  }
+  
+  .button--submit {
+    font-family:'Times New Roman', Times, serif ;
+    min-height: 28px;
+    max-width: 180px;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background-color: #000000;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+  }
+  
+  .button--submit:hover {
+    background-color: #8a8a8c;
+  }
+
+  
+  

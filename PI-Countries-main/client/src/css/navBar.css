@@ -1,0 +1,23 @@
+.navConteiner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-left: auto;
+
+}
+
+.navButton {
+    font-family: Impact;
+    font-size: 30px;
+    font-weight: bold;
+    color: #222324;
+    text-decoration: none;
+}
+
+.navButton:hover {
+    background: #b6cce1;
+    border-radius: 50px;
+    opacity: 50%;
+}

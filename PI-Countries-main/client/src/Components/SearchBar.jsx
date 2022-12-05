@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {getNameContry} from "../actions"
+import "../css/SearchBar.css"
 
 const SearchBar = () => {
     const dispatch = useDispatch()
@@ -21,12 +22,13 @@ const handlerSubmit = (e) => { // envia el nombre que pasa el usuario en el inpu
  
 
     return (
-        <div> 
-            <input type="text" 
+        <div className="input-group"> 
+            <input className="input"
+                    type="text" 
                     placeholder="Buscar..."
                     onChange={(e) => handlerInputChange(e)}
                     />
-            <button type="submit" onClick={(e)=> handlerSubmit(e)}>Buscar</button>
+            <button className="button--submit" type="submit" onClick={(e)=> handlerSubmit(e)}>search</button>
         </div>
     )
 }
