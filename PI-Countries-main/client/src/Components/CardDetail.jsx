@@ -25,14 +25,14 @@ const CardDetail = (props) => {
     return (
         <div>
 
-                <div className="location">
+
+        <div className="cardConteinerDetail">
+              
+        <div className="location">
                     <Link to="/home">
                         <button className="btnCardDetail">Volver</button>
                     </Link> 
                 </div>  
-
-        <div className="cardConteinerDetail">
-              
 
           { 
             contryDetail && contryDetail ?

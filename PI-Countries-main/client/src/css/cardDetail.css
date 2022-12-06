@@ -1,24 +1,26 @@
 
 .cardConteinerDetail {
   background-image: url('C:\Users\Hattori Hanzo\Downloads\PI-Countries-main\PI-Countries-main\client\src\imagen\imgFondo.jpg');
-  display: flex;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: auto;
-  gap: 100px;
-  margin-top: 50px;
+  height: 100vh;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .conteinerDetail {
  margin: auto;
+ position: relative;
  margin-right:auto;
- margin-left: 280px;
- margin-top: 2px;
+ margin-left: auto;
+ margin-top: 200px;
  margin-bottom: auto;
- width: 500px;
+ width: 700px;
  height: auto;
- display: flex;
+ display: inline;
  flex-direction: column;
  align-items:center;
  background: #f2f2f3;
@@ -49,14 +51,15 @@
 /* ----------------------------------------------------------------- */
 
 .actividades {
+ position: relative;
  margin: auto;
  margin-right:auto;
- margin-left: 280px;
- margin-top: 2px;
+ margin-left: auto;
+ margin-top: 200px;
  margin-bottom: auto;
- width: 500px;
+ width: 700px;
  height: auto;
- display: flex;
+ display: inline;
  flex-direction: column;
  align-items:center;
  background: #f2f2f3;
@@ -94,12 +97,12 @@ transition: all 0.5s;
  }
  
  .btnCardDetail {
-  position: relative;
+  position:absolute;
   font-size: 17px;
   text-transform: uppercase;
   text-decoration: none;
   padding: 1em 2.5em;
-  display: inline-block;
+  display: block;
   border-radius: 6em;
   transition: all .2s;
   border: none;
@@ -108,6 +111,8 @@ transition: all 0.5s;
   color: black;
   background-color: white;
   margin-left: 10px;
+  margin-top: -550px;
+  margin-right: -500px;
  }
  
  .btnCardDetail:hover {
@@ -122,7 +127,7 @@ transition: all 0.5s;
  
  .btnCardDetail::after {
   content: "";
-  display: inline-block;
+  display: flex;
   height: 100%;
   width: 100%;
   border-radius: 100px;

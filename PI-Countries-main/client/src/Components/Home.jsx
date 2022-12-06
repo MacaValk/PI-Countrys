@@ -16,7 +16,7 @@ const Home = () => {
     console.log(todosLosPaises)
 // ------------------------------- Estados locales del componente Home -----------------------
     const [currentPage, setCurrentPage] = useState(1);
-    const [countriesPerPage, setCountriesPerPage] = useState(9); 
+    const [countriesPerPage, setCountriesPerPage] = useState(9);
 
  // ------------------------------ Logica paginado -------------------------------------------- 
     const indexOfLastCountry = currentPage * countriesPerPage; // 9 

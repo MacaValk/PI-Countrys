@@ -25,6 +25,15 @@
   margin-left: 2px;
 }
 
+.paginacionNum button {
+  background: transparent;
+  border: none;
+}
+
+.paginacionNum:hover, .paginacionNum button:hover {
+  cursor: pointer
+}b nm
+
  button::before {
   background-size: 100%;
   background-repeat: no-repeat;

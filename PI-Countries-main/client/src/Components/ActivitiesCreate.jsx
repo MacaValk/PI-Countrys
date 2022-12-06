@@ -1,9 +1,9 @@
 import React from 'react'
 import {useState, useEffect} from "react";
 import {Link, useHistory} from "react-router-dom";
-import {postActivities, getActivities} from "../actions/index";
-import {useDispatch} from "react-redux"; 
-
+import {postActivities, getCountries} from "../actions/index";
+import {useDispatch, useSelector} from "react-redux"; 
+import "../css/formulario.css"
 // El método test() ejecuta la búsqueda de una ocurrencia entre una expresión regular y una cadena especificada. Devuelve true o false.
 function validate(input){
   let errors = {}
@@ -21,9 +21,9 @@ function validate(input){
     errors.duracion = "Debe ser un numero entre 1 y 24"       
   }
   if(!input.idPais) {errors.idPais = "Campo Necesario"}
-  else if(!/^[A-Z]{3}$/.test(input.idPais)){
-    errors.idPais = "Debe ser un codigo valido"
-}
+//   else if(!/^[A-Z]{3}$/.test(input.idPais)){
+//     errors.idPais = "Debe ser un codigo valido"
+// }
 
   console.log(errors)
   return errors;
@@ -34,6 +34,8 @@ function validate(input){
 
 
 function ActivitiesCreate() {
+    const allCountries = useSelector(state => state.allCountries)
+    
     const dispatch = useDispatch();
     const history = useHistory()
     // const activities = useSelector((state) => state.activities)
@@ -48,10 +50,12 @@ function ActivitiesCreate() {
     })
      
     useEffect(() => {
-      dispatch(getActivities())
-    }, [dispatch]) 
+      if (!allCountries.length) {
+      dispatch(getCountries())
+      } }, [dispatch, allCountries]) 
 
     const handlerChange = (e) => { // registra cada vez que cambien o se modifiquen mis inputs
+      console.log(e.target)
       setInput({
         ...input,
         [e.target.name] : e.target.value
@@ -101,49 +105,64 @@ function ActivitiesCreate() {
   return (
     <div className='Form'>
       <Link to="/home"><button className='button'>Volver a home</button></Link>
-      <h1>Crear Actividad!</h1>
       
+      <div className='cardForm'>
+      <h1>Crear Actividad!</h1>
        <form  method="post" onSubmit={(e) => {handlerSubmit(e)}}>
         <div>
-          <label>nombre:</label>
-            <input type="text" value={input.name} name="name" onChange={handlerChange} placeholder='Name' class="input" required="">
+          <label className='words'>Nombre </label>
+            <input type="text" value={input.name} name="name" onChange={handlerChange} placeholder='Name' className="input" required="">
             </input>
             { errors.name && (<p className="error">{errors.name}</p>)}            
         </div>
         <div>
-          <label>dificultad:</label>
-            <input type="text" value={input.dificultad} name="dificultad" onChange={handlerChange} placeholder='1 al 5' class="input" required="">
+          <label className='words'>Dificultad </label>
+            <input type="text" value={input.dificultad} name="dificultad" onChange={handlerChange} placeholder='1 al 5' className="input" required="">
             </input>
             { errors.dificultad && (<p className="error">{errors.dificultad}</p>)}
         </div>
         <div>
-          <label>duracion:</label>
-            <input type="number" value={input.duracion} name="duracion" onChange={handlerChange} placeholder='1 al 24' class="input" required="">
+          <label className='words'>Duracion </label>
+            <input type="number" value={input.duracion} name="duracion" onChange={handlerChange} placeholder='1 al 24' className="input" required="">
             </input>
             { errors.duracion && (<p className="error">{errors.duracion}</p>)}
         </div>
         <div>
-          <label> ID Pais:</label>  
-                <input type="text" value={input.idPais} name="idPais" onChange={handlerChange} placeholder='ej: ARG ' class="input" required="" />
-                { errors.idPais && (<p className="error">{errors.idPais}</p>)}               
+          <label className='words'> ID Pais </label>  
+            <select  className="input" name="idPais" onChange={handlerChange}>
+                  {allCountries.map((country) => (
+                      <option value={country.id}>{country.name}</option>
+                      
+                  ))}
+              </select>
+
+
+                {/* <input type="text" value={input.idPais} name="idPais" onChange={handlerChange} placeholder='ej: ARG ' class="input" required="" />
+                { errors.idPais && (<p className="error">{errors.idPais}</p>)}                */}
         </div>
         <div className='CheckBox'>
-          <label >temporada:</label>
+        <fieldset>
+     
+          <legend className='words'>Estacion </legend>
           
               <input type="checkbox" value="verano" name="verano" onChange={(e) => handlerCheck(e)}/>
-              <label> Verano </label>
+              <label className='temporada'> Verano </label>
           
               <input type="checkbox" value="otoño" name="otoño"  onChange={(e) => handlerCheck(e)}/>
-              <label> Otoño </label>   
+              <label className='temporada'> Otoño </label>   
         
               <input type="checkbox" value="invierno" name="invierno"  onChange={(e) => handlerCheck(e)}/>
-              <label> Invierno </label>
+              <label className='temporada'> Invierno </label>
             
               <input type="checkbox" value="primavera" name="primavera"  onChange={(e) => handlerCheck(e)}/>
-              <label> Primavera </label>  
-        </div>
-          <button type='submit' className='button' disabled={!canSubmit}>Crear Actividad</button>
+              <label className='temporada'> Primavera </label>  
+      
+        </fieldset>
+      </div>
+          <button type='submit' className='buttonSubmit' disabled={!canSubmit}>Crear Actividad</button>
+
       </form>
+      </div>
     </div>
   )
 }
