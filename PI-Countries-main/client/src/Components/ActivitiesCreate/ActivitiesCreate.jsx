@@ -1,9 +1,9 @@
 import React from 'react'
 import {useState, useEffect} from "react";
 import {Link, useHistory} from "react-router-dom";
-import {postActivities, getCountries} from "../actions/index";
+import {postActivities, getCountries} from "../../redux/actions/index";
 import {useDispatch, useSelector} from "react-redux"; 
-import "../css/formulario.css"
+import "./formulario.css"
 // El método test() ejecuta la búsqueda de una ocurrencia entre una expresión regular y una cadena especificada. Devuelve true o false.
 function validate(input){
   let errors = {}
@@ -117,14 +117,12 @@ function ActivitiesCreate() {
       history.push("/home") // redirigir al usuario
     }
 
-    console.log("esto es input.idPais",input.idPais)
-
   return (
     <div className='Form'>
       <Link to="/home"><button className='button'>Volver a home</button></Link>
       
       <div className='cardForm'>
-      <h1>Crear Actividad!</h1>
+      <h1>Crear Nueva Actividad!</h1>
        <form  method="post" onSubmit={(e) => {handlerSubmit(e)}}>
         <div>
           <label className='words'>Nombre </label>
@@ -140,12 +138,12 @@ function ActivitiesCreate() {
         </div>
         <div>
           <label className='words'>Duracion </label>
-            <input type="number" value={input.duracion} name="duracion" onChange={handlerChange} placeholder='1 al 24' className="input" required="">
+            <input type="number" value={input.duracion} name="duracion" onChange={handlerChange} placeholder='01 - 24 hs' className="input" required="">
             </input>
             { errors.duracion && (<p className="error">{errors.duracion}</p>)}
         </div>
         <div>
-          <label className='words'> ID Pais </label>  
+          <label className='words'> Pais </label>  
             <select  className="input" name="idPais" onChange={handlerIdPais}>
                   {allCountries.map((country) => (
                       <option value={country.id}>{country.name}</option>

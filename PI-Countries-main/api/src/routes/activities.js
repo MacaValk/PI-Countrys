@@ -28,7 +28,7 @@ try {
     })
     console.log(nuevaActividad)
 
-    const agregarPais = await Country.findOne({
+    const agregarPais = await Country.findAll({
         where: {
             id: idPais,
         }

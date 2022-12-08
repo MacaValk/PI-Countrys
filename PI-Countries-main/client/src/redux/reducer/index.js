@@ -3,7 +3,7 @@ const initialState = {
     allCountries: [], 
     activities : [], 
     filteredContries : [],
-    detail: {}
+    detail: {ActividadTuristicas: []}
    
    }; 
 

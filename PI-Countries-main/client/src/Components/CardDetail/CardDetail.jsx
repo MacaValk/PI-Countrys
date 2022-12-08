@@ -1,10 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountriDetail} from "../actions";
+import { getCountriDetail} from "../../redux/actions/index";
 import { useParams } from "react-router-dom"
 import {useEffect } from "react";
-import "../css/cardDetail.css"
+import "./cardDetail.css"
 
 const CardDetail = (props) => {
     const dispatch = useDispatch()
@@ -45,7 +45,7 @@ const CardDetail = (props) => {
         <div  className="actividades">
            {
             ( 
-                contryDetail.ActividadTuristicas?.length ? contryDetail.ActividadTuristicas.map(
+                contryDetail.ActividadTuristicas.length ? contryDetail.ActividadTuristicas.map(
                 (el) => {
                         return (
                      <div>

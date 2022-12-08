@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/paginado.css"
+import "./paginado.css"
 
  const Paginado = ({countriesPerPage, todosLosPaises, paginado}) => {
     const pageNumbers = []; 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
-import {getCountries, filterCountries, orderByName,  orderByPopulation, filterByActivity, getActivities} from "../actions"; 
+import {getCountries, filterCountries, orderByName,  orderByPopulation, filterByActivity, getActivities} from "../../redux/actions/index"; 
 // import {Link} from "react-router-dom"; 
-import Card from "./Card";
-import Paginado from "./Paginado";
-import SearchBar from "./SearchBar";
-import NavBar from "./NavBar";
-import "../css/Home.css";
+import Card from "../Card/Card";
+import Paginado from "../Paginado/Paginado";
+import SearchBar from "../SearchBar/SearchBar";
+import NavBar from "../NavBar/NavBar";
+import "./Home.css";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -105,19 +105,19 @@ function handlefilteredByActivity(e){
             </select>
 {/* -------------------------------- filtro por poblacion -------------------------------  */}
             <select  className="Filtro" onChange={(e) => {handlerFilterPopulation(e)}} > 
-                <option value="asc">Menor poblacion  </option>
+                <option value="asc">Menor poblacion</option>
                 <option value="dec">Mayor poblacion</option>
             </select>
 {/* -------------------------------------------------------------------------------------- */}
             <select  className="Filtro" onChange={(e) => {handlefilteredByActivity(e)}}>
-                <option value="todas">Todas Actividades</option>
+                <option value="todas"> Actividades Turisticas </option>
                 {activities.map((act) => (
                     <option value={act.name}>{act.name}</option>
                 ))}
             </select>
 {/* ----------------------------------- Filtro Continente -------------------------------- */}
             <select className="Filtro" onChange = {(e) => {handlerFilterContinents(e)}}>
-                        <option value = "All">Selecciona todos los Continente</option>
+                        <option value = "All"> filtrado por continente </option>
                         <option value = "Asia">Asia</option>
                         <option value = "South America">South America</option>
                         <option value = "North America">North America</option>

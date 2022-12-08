@@ -1,10 +1,10 @@
 import './App.css';
 import React from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom"
-import LandingPage from './Components/LandingPage';
-import Home from './Components/Home';
-import ActivitiesCreate from "./Components/ActivitiesCreate"
-import CardDetail from "./Components/CardDetail"
+import LandingPage from './Components/LandingPage/LandingPage';
+import Home from './Components/Home/Home';
+import ActivitiesCreate from "./Components/ActivitiesCreate/ActivitiesCreate"
+import CardDetail from "./Components/CardDetail/CardDetail"
 
 function App() {
   return (

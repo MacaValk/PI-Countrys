@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "../css/Card.css"
+import "./Card.css"
 
 const Card = ({name, continents, flagsImg, id}) => {
     // console.log(name, continents, flagsImg)

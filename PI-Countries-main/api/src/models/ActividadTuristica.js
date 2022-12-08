@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         dificultad: {
-            type: DataTypes.ENUM("1", "2", "3", "4", "5"), 
+            type: DataTypes.ENUM("1", "2", "3", "4", "5"), // validacion desde el back, definiendo que atributos podes recibir como validos
         },
         duracion: {
             type: DataTypes.INTEGER
