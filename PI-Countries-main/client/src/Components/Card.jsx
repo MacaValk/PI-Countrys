@@ -17,8 +17,7 @@ const Card = ({name, continents, flagsImg, id}) => {
       <div className="Card" onClick={rutaDetalle}>
             <h3 >{name}</h3> 
             <img className="img" src={flagsImg} alt="img not found" />
-            <h5 >{continents}</h5>
-         
+            <h5 >{continents}</h5>  
        </div>
        
     )

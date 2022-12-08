@@ -218,3 +218,9 @@ transition: all 0.5s;
   font-size: 30px;
   margin-bottom: 40px;
 }
+
+
+.noActividades {
+  font-size: x-large;
+  font-family: 'Times New Roman', Times, serif;
+}

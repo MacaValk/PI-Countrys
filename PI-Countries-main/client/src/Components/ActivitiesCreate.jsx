@@ -9,8 +9,8 @@ function validate(input){
   let errors = {}
   
    if(!input.name) {errors.name = "Campo Necesario"}
-  else if (/[0-9]/.test(input.nombre)){
-    errors.nombre = "Nombre invalido"
+  else if (/[0-9]/.test(input.name)){
+    errors.name = "Nombre invalido"
 }
   if(!input.dificultad){ errors.dificultad = "Campo Necesario" 
 }  else if(input.dificultad < 1 || input.dificultad > 5)
@@ -21,9 +21,6 @@ function validate(input){
     errors.duracion = "Debe ser un numero entre 1 y 24"       
   }
   if(!input.idPais) {errors.idPais = "Campo Necesario"}
-//   else if(!/^[A-Z]{3}$/.test(input.idPais)){
-//     errors.idPais = "Debe ser un codigo valido"
-// }
 
   console.log(errors)
   return errors;
@@ -46,7 +43,7 @@ function ActivitiesCreate() {
       dificultad:"",
       duracion:  "",
       temporada: "",
-      idPais: ""
+      idPais: []
     })
      
     useEffect(() => {
@@ -67,6 +64,17 @@ function ActivitiesCreate() {
       console.log(input)
     }
 
+    const handlerIdPais = (e) => {
+      if (!input.idPais.includes(e.target.value)){
+        setInput({
+          ...input,
+        idPais : [...input.idPais, e.target.value]
+        })
+      }
+      
+
+    }
+
     const handlerCheck = (e) => {
       if(e.target.checked){
         setInput({
@@ -76,11 +84,18 @@ function ActivitiesCreate() {
       }
     }
 
-
+    const handleDelete = (e) => {
+    setInput({
+      ...input, 
+      idPais : input.idPais.filter(el => el !== e)
+    }) 
+    }
 
     // console.log("errors:", errors)
     const areFieldsEmpty = !input.name || !input.dificultad || !input.duracion || !input.temporada || !input.idPais
     const thereAreErrors = Object.keys(errors).length
+
+    // El método Object.keys() devuelve un array de las propiedades names de un objeto, en el mismo orden como se obtienen en un loop normal
     const canSubmit = !thereAreErrors && !areFieldsEmpty
     // console.log("canSubmit", canSubmit)
 
@@ -97,10 +112,12 @@ function ActivitiesCreate() {
         dificultad:"",
         duracion: "",
         temporada: "",
-        idPais: ""
+        idPais: []
       })
       history.push("/home") // redirigir al usuario
     }
+
+    console.log("esto es input.idPais",input.idPais)
 
   return (
     <div className='Form'>
@@ -129,16 +146,20 @@ function ActivitiesCreate() {
         </div>
         <div>
           <label className='words'> ID Pais </label>  
-            <select  className="input" name="idPais" onChange={handlerChange}>
+            <select  className="input" name="idPais" onChange={handlerIdPais}>
                   {allCountries.map((country) => (
                       <option value={country.id}>{country.name}</option>
                       
                   ))}
               </select>
+                  { input.idPais?.map( el => {
+                    return (
+                      <div key={el}>
+                      <button onClick={() => {handleDelete(el)}}>X</button> <span> {el} </span>
+                    </div>
+                    )}) 
+                  }
 
-
-                {/* <input type="text" value={input.idPais} name="idPais" onChange={handlerChange} placeholder='ej: ARG ' class="input" required="" />
-                { errors.idPais && (<p className="error">{errors.idPais}</p>)}                */}
         </div>
         <div className='CheckBox'>
         <fieldset>

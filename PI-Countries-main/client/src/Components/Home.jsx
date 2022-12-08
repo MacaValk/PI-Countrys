@@ -58,22 +58,28 @@ const handlerClick = (e) => {
     console.log("dentro del handlerFilterContinents")
     e.preventDefault()
     dispatch(filterCountries(e.target.value)); 
+    setCurrentPage(1)
 }
 
 const handlerFilterName = (e) => {
     e.preventDefault(e);
     console.log(e.target.value)
     dispatch(orderByName(e.target.value))
+    setCurrentPage(1)
 }
 
 const handlerFilterPopulation = (e) => {
     e.preventDefault(e);
     dispatch(orderByPopulation(e.target.value))
+    setCurrentPage(1)
+   
 }
 
 function handlefilteredByActivity(e){
     e.preventDefault();
     dispatch(filterByActivity(e.target.value))
+    setCurrentPage(1)
+    
 }
  //  recibe como parametro el value del imput accedo a esa funcion con el e.target.value
   

@@ -3,7 +3,7 @@ const initialState = {
     allCountries: [], 
     activities : [], 
     filteredContries : [],
-    detail: []
+    detail: {}
    
    }; 
 
@@ -122,6 +122,9 @@ function rootReducer (state = initialState, action){
             ...state,
             filteredContries: filtrado 
            }
+           
+         
+
                 
             default:
                 return state;

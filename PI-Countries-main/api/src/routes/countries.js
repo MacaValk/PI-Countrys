@@ -44,15 +44,7 @@ const getApiInfo = async () => {
           cargarPaises(); 
 
 // ------------------------------------------------------------------------------------
-// router.get("/", async (req, res) => {
-//   const {name} = req.query; 
-//  try {
-//   return res.send(console.log(name))
-//  } catch (error) {
-//   res.send(error.message)
-//  }
-  
-// })
+
 
 router.get("/", async (req, res) => {
   try {
@@ -90,7 +82,7 @@ router.get("/", async (req, res) => {
     const findId = await Country.findByPk(id, 
        { include:  ActividadTuristica  }
        ); 
-    res.json(findId || "pais no encontrado")
+    res.status(200).json(findId || "pais no encontrado")
   } catch (error) {
     res.status(400).send(error.message)
   }

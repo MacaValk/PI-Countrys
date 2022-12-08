@@ -9,6 +9,7 @@ const SearchBar = () => {
     const [name, setName] = useState(""); 
 
 const handlerInputChange = (e) => { // guarda el name que llega desde el input 
+    //ponerle un limite de letras a la busqueda
     e.preventDefault()
     setName(e.target.value)
     console.log(name)

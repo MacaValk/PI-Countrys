@@ -1,38 +1,31 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountriDetail, clearState } from "../actions";
+import { getCountriDetail} from "../actions";
 import { useParams } from "react-router-dom"
-import {useEffect, useState} from "react";
+import {useEffect } from "react";
 import "../css/cardDetail.css"
 
 const CardDetail = (props) => {
     const dispatch = useDispatch()
     let {id} = useParams()
   
-
-
-
     useEffect(() => {
             dispatch(getCountriDetail(id)); 
-        }, [])
+        }, [dispatch, id])
 
-    const contryDetail = useSelector((state) => state.detail)
-    console.log(contryDetail.ActividadTuristicas)
-
-
-
-    return (
-        <div>
-
-
-        <div className="cardConteinerDetail">
-              
-        <div className="location">
-                    <Link to="/home">
-                        <button className="btnCardDetail">Volver</button>
-                    </Link> 
-                </div>  
+    const contryDetail = useSelector((state)=> state.detail)
+    // const seraArray = contryDetail.ActividadTuristicas
+    // console.log( "contryDetail", typeof seraArray)
+    
+ return (
+     <div>
+        <div className="cardConteinerDetail">              
+            <div className="location">
+                        <Link to="/home">
+                            <button className="btnCardDetail">Volver</button>
+                        </Link> 
+                    </div>  
 
           { 
             contryDetail && contryDetail ?
@@ -51,16 +44,17 @@ const CardDetail = (props) => {
            } 
         <div  className="actividades">
            {
-            ( contryDetail.ActividadTuristicas ? contryDetail.ActividadTuristicas.map(
+            ( 
+                contryDetail.ActividadTuristicas?.length ? contryDetail.ActividadTuristicas.map(
                 (el) => {
-                    return (
-                        <div>
+                        return (
+                     <div>
                         <h3  className="actividad" > Actividad: {el.name} </h3>
                         <h3  className="dificultad"> Dificultad: {el.dificultad} </h3>
                         <h3  className="duracion" > Duracion: {el.duracion} </h3>
-                        <h3  className="pais" > Temporada: {el.temporada} </h3>
-                    </div>
-                    )}) :  <h2  className="noActividades">no hay actividades</h2>)
+                        <h3  className="pais"> Temporada: {el.temporada} </h3>
+                     </div>
+                    )}) :  <h1 className="actividades"> no hay actividades </h1>) 
            } 
                 </div>
         </div>
